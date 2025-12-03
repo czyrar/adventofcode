@@ -5,14 +5,14 @@ mod test {
 
     #[test]
     fn test_part1() {
-        let input = include_str!("../data/test.dat");
+        let input = include_str!("../../../data/day3/test.in");
         let result = 357;
         assert_eq!(part1(input), result);
     }
 
     #[test]
     fn test_part2() {
-        let input = include_str!("../data/test.dat");
+        let input = include_str!("../../../data/day3/test.in");
         let result = 3121910778619i64;
         assert_eq!(part2(input), result);
     }

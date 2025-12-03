@@ -1,2 +1,3 @@
-input.dat
+*.in
+data
 target
