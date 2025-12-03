@@ -6,11 +6,10 @@ pub fn part1(input: &str) -> i32 {
         for dig in 0..2 {
             (i, z) = digits
                 .iter()
-                .skip(i)
                 .enumerate()
-                .filter(|&(j, _)| j < line.len() - 1 + dig - i)
+                .filter(|&(j, _)| j >= i && j < line.len() - 1 + dig)
                 .min_by_key(|&(_, x)| 9 - x)
-                .map(|(j, x)| (j + i + 1, (z * 10) + x))
+                .map(|(j, x)| (j + 1, (z * 10) + x))
                 .unwrap();
         }
         joltvolt += z;

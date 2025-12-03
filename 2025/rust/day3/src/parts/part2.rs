@@ -9,11 +9,10 @@ pub fn part2(input: &str) -> i64 {
         for dig in 0..12 {
             (i, z) = digits
                 .iter()
-                .skip(i)
                 .enumerate()
-                .filter(|&(j, _)| j < line.len() - 11 + dig - i)
+                .filter(|&(j, _)| j >= i && j < line.len() - 11 + dig)
                 .min_by_key(|&(_, x)| 9 - x)
-                .map(|(j, x)| (j + i + 1, (z * 10) + x))
+                .map(|(j, x)| (j + 1, (z * 10) + x))
                 .unwrap();
         }
         joltvolt += z;
