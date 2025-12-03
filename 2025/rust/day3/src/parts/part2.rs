@@ -1,29 +1,19 @@
-use std::cmp::Ordering;
-
 pub fn part2(input: &str) -> i64 {
     let mut joltvolt: u64 = 0;
     for line in input.lines() {
-        let mut lastidx = 0;
-        let mut digit: u64 = 0;
+        let (mut i, mut z) = (0, 0u64);
         for dig in 0..12 {
-            let (mut i, c) = line
+            (i, z) = line
                 .chars()
-                .skip(lastidx)
+                .skip(i)
+                .map(|x| x.to_digit(10).unwrap() as u64)
                 .enumerate()
-                .filter(|(i, _)| *i < line.len() - 11 + dig - lastidx)
-                .max_by(|(_, a), (_, b)| a.partial_cmp(b).unwrap_or(Ordering::Equal))
+                .filter(|&(j, _)| j < line.len() - 11 + dig - i)
+                .min_by_key(|(_, x)| 9 - x)
+                .map(|(j, x)| (j + i + 1, (z * 10) + x))
                 .unwrap();
-            for (j, cc) in line.chars().skip(lastidx).enumerate() {
-                if c == cc {
-                    i = j;
-                    break;
-                }
-            }
-            let x = c.to_digit(10).unwrap() as u64;
-            lastidx += i + 1;
-            digit = (digit * 10) + x;
         }
-        joltvolt += digit;
+        joltvolt += z;
     }
     joltvolt as i64
 }
