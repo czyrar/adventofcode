@@ -9,7 +9,7 @@ fn main() {
         part1(input)
     );
     println!(
-        "PART 1: the total number of valid ingredients is {}",
+        "PART 2: the total number of valid ingredients is {}",
         part2(input)
     );
 }
